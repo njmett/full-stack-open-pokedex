@@ -4,8 +4,12 @@ on:
   push:
     branches:
       - master
-      # note that your "main" branch might be called main instead of master
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
 
+
+#note for commit in task 11.13
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-20.04
@@ -28,6 +32,11 @@ jobs:
           build: npm run build
           start: npm run start-prod
           wait-on: http://localhost:5000
+
+  deployment:
+    runs-on: ubuntu-20.04
+    if: ${{ github.event_name == 'push' }}
+    steps:
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
