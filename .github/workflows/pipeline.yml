@@ -41,6 +41,23 @@ jobs:
           heroku_email: "niklas.mettala@hotmail.com"
           healthcheck: "https://boiling-springs-43350.herokuapp.com/health"
           rollbackonhealthcheckfailed: true
+      - name: Discord Notify Success
+        if: success()
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        with:
+          severity: info
+          text: A new version of pokedex was deployed.
+          description: Deployed to https://boiling-springs-43350.herokuapp.com/ by ${{github.event.commits[0].committer.username}}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Discord Notify Fail
+        if: failure()
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        with:
+          severity: error
+          text: Build failed
+          description: commit ${{github.event.commits[0].url}} by ${{github.event.commits[0].committer.username}} broke the build
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+
 
   tag_release:
     needs: [simple_deployment_pipeline]
