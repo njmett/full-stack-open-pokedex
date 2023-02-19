@@ -1,0 +1,6 @@
+I picked Java for the language to talk about in this exercise. Javas CI setup has multiple possible tools for linting, testing and building.
+Linters for Java are for example checkstyle, lightrun and pmd. As Java is very popular language there are also many tools for testing and building projects. One testing framework for example is JUnit. Building can be done with tools like Apaches Maven.
+
+Alternatives for setting up the CI are tools like TeamCity or CircleCI. These tools have their own features and so also benefits and drawbacks in using them. CircleCI for example seems to be able to be integrated with git and is advertised as easy to setup and use. TeamCity should be easily integrated with different IDEs for easy usage to developers.
+
+The decision on whether it is better to use cloud-based or self-hosted environment depends on the project and chosen tools. If I would choose CircleCI I would need to know the scale and budget of the project. For simple projects there is a free cloud-based solution and I think that would be the ideal choice for my personal projects. But there is also an option for self-hosted version available for companies and larger projects.
